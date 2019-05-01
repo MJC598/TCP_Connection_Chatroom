@@ -107,7 +107,7 @@ def newuser(message):
         return '>Server: Please create a username less than 32 characters'
     #oh dear god this is a bad password, brute force could crack this in minutes if not seconds   
     #but per requirements make sure it is the specific length 
-    if provided_pass < 4 or provided_pass > 8:
+    if len(provided_pass) < 4 or len(provided_pass) > 8:
         print('Invalid password length')
         return '>Server: Invalid password length'
     user_info[provided_id] = provided_pass
