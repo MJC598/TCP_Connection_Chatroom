@@ -44,10 +44,8 @@ def login(message):
         if provided_pass == user_info[provided_id]:
             print('Successful login')
             change_login(provided_id)
-            val = 'Server: ' + login_name + ' joins'
+            val = '>Server: ' + login_name + ' joins'
         else:
-            print(provided_pass)
-            print(user_info[provided_id])
             print('Incorrect login')
             val = '>Server: Incorrect login'
     else:
@@ -88,6 +86,7 @@ def send(message):
     message = ' '.join(message)
     message = message[4:]
     message = ('>' + login_name + ':' + message)
+    print(message)
     return message
 
 def newuser(message):
@@ -115,8 +114,13 @@ def newuser(message):
     f = open('users.txt', 'a')
     f.write('\n' + provided_id + ',' + provided_pass)
     f.close()
-    print('please login')
-    return '>Server: New User Created. Please Login'
+    if login_status == False:
+        print('New User Created. Please login.')
+        appended = 'Please login.'
+    else:
+        print('New User Created.')
+        appended = ''
+    return '>Server: New User Created.' + appended
 
 #wrapper function that manages all others
 def parse_message(message):
